@@ -3,10 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class EventController extends Controller
 {
+    /**
+     * auth middleware is actif only for 2 methods
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['only' => ['create', 'store']]);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -22,23 +32,45 @@ class EventController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view('events.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $authed_user = auth()->user();
+
+        $event = $authed_user->events()->create([
+            'title' => $request->title,
+            'slug' => Str::slug($request->title),
+            'content' => $request->content,
+            'premium' => $request->filled('premium'),
+            'starts_at' => $request->starts_at,
+            'ends_at' => $request->ends_at
+        ]);
+
+        $tags = explode(',', $request->tags);
+
+        foreach ($tags as $inputTag) {
+            $inputTag = trim($inputTag);
+
+            $tag = Tag::firstOrCreate([
+                'slug' => Str::slug($inputTag),
+            ], [
+                'name' => $inputTag
+            ]);
+
+            $event->tags()->attach($tag->id);
+        }
+
+        return redirect()->route('event.index');
     }
 
     /**

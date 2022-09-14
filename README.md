@@ -32,7 +32,10 @@ Coders [tutorial](https://www.youtube.com/watch?v=joaHRXptsF8&list=PLeeuvNW2FHVh
 ### Tips - Debug
 
 * Put `@auth` end `@endauth` directives around *Auth::user()* to prevent authentication system errors
-* Put *Carbon::setLocale('fr');* in **boot()** method of **AppServiceProvider** to show dates in french 
+* Put *Carbon::setLocale('fr');* in **boot()** method of **AppServiceProvider** to show dates in french
+* Use *:* before value attribut to parse value and interpret php in value Example **:value="old('title')"**
+* Error: *Illuminate \ Database \ Eloquent \ MassAssignmentException*,  
+*Add [slug] to fillable property to allow mass assignment on [App\Models\Tag].*, solution: Declare **protected $guarded = [];** in model needed
 
 ## Page visuals
 
