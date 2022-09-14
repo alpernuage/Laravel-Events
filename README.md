@@ -29,12 +29,10 @@ Coders [tutorial](https://www.youtube.com/watch?v=joaHRXptsF8&list=PLeeuvNW2FHVh
 * `npm run dev` to compile all JavaScript libraries
 * Update [node](https://nodejs.org/en/download/) version if needed *(Ex:failed to load config from vite.config.js)*
 
-### Debug Tips
+### Tips - Debug
 
-* Error: *Invalid route action: [App\Http\Controllers\DashboardController].*, solution: Declare **Route::get('
-  /dashboard', [DashboardController::class, 'index'])** instead of *Route::get('/dashboard'), DashboardController::
-  class, 'index')*
 * Put `@auth` end `@endauth` directives around *Auth::user()* to prevent authentication system errors
+* Put *Carbon::setLocale('fr');* in **boot()** method of **AppServiceProvider** to show dates in french 
 
 ## Page visuals
 
