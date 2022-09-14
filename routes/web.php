@@ -24,4 +24,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+Route::post('webhook/payment/succeeded', function () {
+    return 'ok';
+});
+
+require __DIR__ . '/auth.php';
