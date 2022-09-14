@@ -1,5 +1,7 @@
 # Laravel Events project
-Project realised with Nord Coders [tutorial](https://www.youtube.com/watch?v=joaHRXptsF8&list=PLeeuvNW2FHVhs5i7Gt4ms2NzT0_YfI1Ev&index=2)
+
+Project realised with Nord
+Coders [tutorial](https://www.youtube.com/watch?v=joaHRXptsF8&list=PLeeuvNW2FHVhs5i7Gt4ms2NzT0_YfI1Ev&index=2)
 
 *Commands to clone this project from GitHub*
 
@@ -19,13 +21,20 @@ Project realised with Nord Coders [tutorial](https://www.youtube.com/watch?v=joa
 * **If an error occurs**, run `php artisan migrate:refresh --seed` to proceed
   migration and seed` after debug. This command calls down method in migration file to rollback operation
 
+## Install [Laravel Breeze](https://laravel.com/docs/9.x/starter-kits) for the authentication system
+
+* `composer require laravel/breeze --dev`
+* `php artisan breeze:install`
+* `npm install` to install JavaScript dependencies
+* `npm run dev` to compile all JavaScript libraries
+* Update [node](https://nodejs.org/en/download/) version if needed *(Ex:failed to load config from vite.config.js)*
+
 ### Debug Tips
 
 * Error: *Invalid route action: [App\Http\Controllers\DashboardController].*, solution: Declare **Route::get('
   /dashboard', [DashboardController::class, 'index'])** instead of *Route::get('/dashboard'), DashboardController::
   class, 'index')*
-* If there is no href content you have to put `<a href="#"`. If your href attribute is empty like this `<a href=""`  
-  **onclick="event.preventDefault** won't work to prevent previous action
+* Put `@auth` end `@endauth` directives around *Auth::user()* to prevent authentication system errors
 
 ## Page visuals
 
@@ -63,11 +72,3 @@ Delete
 
 [//]: # (![Delete!]&#40;public/pages/Delete.png&#41;  )
 ![Delete!](https://user-images.githubusercontent.com/50120472/189346816-e3637692-8ec8-4a3a-b577-edfe48d18cff.png)
-
-#### image links are got from GitHub Issues page:
-
-* Click on Issues tab in a GitHub repository
-* Click on "New issue"
-* Click on "Submit new issue"
-* Drag and drop images into text area
-* Get url of each image (between parenthesis)
